@@ -1,0 +1,10 @@
+{
+    "description": "Modern horizontal scrolling stock ticker from Yahoo Finance",
+    "name": "YF Ticker",
+    "prevent-decorations": true,
+    "max-instances": "5",
+    "version": "1.0.0",
+    "uuid": "yfticker@kahsky",
+    "author": "kahsky",
+    "last-edited": 1741737600
+}

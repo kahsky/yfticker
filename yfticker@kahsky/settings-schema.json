@@ -1,0 +1,286 @@
+{
+    "settingsLayout": {
+        "type": "layout",
+        "pages": ["quotesPage", "displayPage", "appearancePage", "networkPage"],
+        "quotesPage": {
+            "type": "page",
+            "title": "Quotes",
+            "sections": ["quotesSymbolsSection", "quotesUpdateSection"]
+        },
+        "displayPage": {
+            "type": "page",
+            "title": "Display",
+            "sections": ["displayFieldsSection", "displayColorsSection"]
+        },
+        "appearancePage": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": ["appearanceSizeSection", "appearanceScrollSection", "appearanceBgSection", "appearanceFontSection"]
+        },
+        "networkPage": {
+            "type": "page",
+            "title": "Network",
+            "sections": ["networkSessionSection"]
+        },
+        "quotesSymbolsSection": {
+            "type": "section",
+            "title": "Symbols",
+            "keys": ["quoteSymbols"]
+        },
+        "quotesUpdateSection": {
+            "type": "section",
+            "title": "Updates",
+            "keys": ["delayMinutes", "updateDataButton"]
+        },
+        "displayFieldsSection": {
+            "type": "section",
+            "title": "Fields",
+            "keys": ["showChangeIcon", "showMarketPrice", "showCurrencyCode", "showAbsoluteChange", "showPercentChange"]
+        },
+        "displayColorsSection": {
+            "type": "section",
+            "title": "Trend Colors",
+            "keys": ["uptrendChangeColor", "downtrendChangeColor", "unchangedTrendColor"]
+        },
+        "appearanceSizeSection": {
+            "type": "section",
+            "title": "Size",
+            "keys": ["tickerWidth", "tickerHeight"]
+        },
+        "appearanceScrollSection": {
+            "type": "section",
+            "title": "Scrolling",
+            "keys": ["scrollSpeed"]
+        },
+        "appearanceBgSection": {
+            "type": "section",
+            "title": "Background",
+            "keys": ["backgroundColor", "transparency", "cornerRadius", "borderWidth", "borderColor"]
+        },
+        "appearanceFontSection": {
+            "type": "section",
+            "title": "Font",
+            "keys": ["fontColor", "scaleFontSize", "fontScale"]
+        },
+        "networkSessionSection": {
+            "type": "section",
+            "title": "HTTP Session",
+            "keys": ["sendCustomUserAgent", "customUserAgent", "enableCurl", "curlCommand", "applyNetworkSettingsButton"]
+        }
+    },
+
+    "quoteSymbols": {
+        "type": "textview",
+        "height": 300,
+        "default": "AAPL\nMSFT\nNVDA\nGOOGL\nAMZN\nMETA\nTSLA\nJPM\nV\nWMT",
+        "description": "Quote symbols",
+        "tooltip": "List of quote symbols, one per line"
+    },
+    "delayMinutes": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 1,
+        "max": 1440,
+        "step": 1,
+        "units": "minutes",
+        "description": "Update frequency",
+        "tooltip": "Data refresh frequency, in minutes"
+    },
+    "updateDataButton": {
+        "type": "button",
+        "callback": "onManualRefreshRequested",
+        "description": "Refresh quotes now",
+        "tooltip": "Fetch latest quotes data"
+    },
+
+    "showChangeIcon": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show trend icon (▲▼)",
+        "tooltip": "Show uptrend/downtrend arrow"
+    },
+    "showMarketPrice": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show price",
+        "tooltip": "Display the current market price"
+    },
+    "showCurrencyCode": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show currency symbol",
+        "tooltip": "Display the currency symbol (e.g. $)",
+        "dependency": "showMarketPrice"
+    },
+    "showAbsoluteChange": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show absolute change",
+        "tooltip": "Display the absolute price change (e.g. +1.23)"
+    },
+    "showPercentChange": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show percent change",
+        "tooltip": "Display the percent change (e.g. +0.62%)"
+    },
+
+    "uptrendChangeColor": {
+        "type": "colorchooser",
+        "default": "rgb(0,200,80)",
+        "description": "Uptrend color",
+        "tooltip": "Color for positive change"
+    },
+    "downtrendChangeColor": {
+        "type": "colorchooser",
+        "default": "rgb(220,50,50)",
+        "description": "Downtrend color",
+        "tooltip": "Color for negative change"
+    },
+    "unchangedTrendColor": {
+        "type": "colorchooser",
+        "default": "rgb(150,150,150)",
+        "description": "Unchanged color",
+        "tooltip": "Color for no change"
+    },
+
+    "tickerWidth": {
+        "type": "spinbutton",
+        "default": 900,
+        "min": 200,
+        "max": 4000,
+        "step": 20,
+        "units": "pixels",
+        "description": "Ticker width",
+        "tooltip": "Width of the ticker bar"
+    },
+    "tickerHeight": {
+        "type": "spinbutton",
+        "default": 40,
+        "min": 24,
+        "max": 120,
+        "step": 2,
+        "units": "pixels",
+        "description": "Ticker height",
+        "tooltip": "Height of the ticker bar"
+    },
+    "scrollSpeed": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "units": "px/frame",
+        "description": "Scroll speed",
+        "tooltip": "Pixels moved per frame (~60fps). Higher = faster."
+    },
+
+    "backgroundColor": {
+        "type": "colorchooser",
+        "default": "rgb(10,10,18)",
+        "description": "Background color",
+        "tooltip": "Ticker background color"
+    },
+    "transparency": {
+        "type": "scale",
+        "default": 0.92,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background opacity",
+        "tooltip": "1 = fully opaque, 0 = fully transparent"
+    },
+    "cornerRadius": {
+        "type": "spinbutton",
+        "default": 8,
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner radius",
+        "tooltip": "Rounded corners radius"
+    },
+    "borderWidth": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "units": "pixels",
+        "description": "Border width",
+        "tooltip": "Border thickness (0 = no border)"
+    },
+    "borderColor": {
+        "type": "colorchooser",
+        "default": "rgb(40,40,60)",
+        "description": "Border color",
+        "tooltip": "Ticker border color"
+    },
+
+    "fontColor": {
+        "type": "colorchooser",
+        "default": "rgb(220,220,230)",
+        "description": "Font color",
+        "tooltip": "Default text color"
+    },
+    "scaleFontSize": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Custom font size",
+        "tooltip": "Enable custom font size scaling"
+    },
+    "fontScale": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 3.0,
+        "step": 0.1,
+        "units": "×",
+        "description": "Font scale factor",
+        "tooltip": "Multiply the base font size",
+        "dependency": "scaleFontSize"
+    },
+
+    "cacheAuthorizationParameters": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Cache authorization parameters",
+        "tooltip": "Remember fetched authorization parameters"
+    },
+    "authorizationParameters": {
+        "type": "generic",
+        "default": "{\"version\": 1}"
+    },
+    "sendCustomUserAgent": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Send custom User-Agent",
+        "tooltip": "Include a custom User-Agent header in requests"
+    },
+    "customUserAgent": {
+        "type": "entry",
+        "default": "Mozilla/5.0 (X11; Linux x86_64; rv:140.0) Gecko/20100101 Firefox/140.0",
+        "description": "Custom User-Agent",
+        "tooltip": "Value for the User-Agent header",
+        "dependency": "sendCustomUserAgent"
+    },
+    "enableCurl": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Use curl",
+        "tooltip": "Use external curl tool for HTTP requests"
+    },
+    "curlCommand": {
+        "type": "entry",
+        "default": "/usr/bin/curl",
+        "description": "Path to curl",
+        "tooltip": "Absolute path to the curl executable",
+        "dependency": "enableCurl"
+    },
+    "applyNetworkSettingsButton": {
+        "type": "button",
+        "callback": "onNetworkSettingsChanged",
+        "description": "Apply network settings",
+        "tooltip": "Re-fetch authorization parameters and refresh data"
+    }
+}

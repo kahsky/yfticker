@@ -1,0 +1,45 @@
+.yfticker-main {
+  padding: 0;
+  margin: 0;
+  background-color: rgba(10, 10, 18, 0.92);
+}
+
+.yfticker-item {
+  padding: 0 10px;
+  border-radius: 6px;
+  margin: 0 3px;
+}
+
+.yfticker-symbol {
+  font-weight: bold;
+  padding: 0 4px 0 0;
+}
+
+.yfticker-price {
+  padding: 0 3px;
+}
+
+.yfticker-change {
+  padding: 0 3px;
+}
+
+.yfticker-icon {
+  padding: 0 2px;
+}
+
+.yfticker-separator {
+  padding: 0 8px;
+  opacity: 0.4;
+}
+
+.yfticker-error {
+  color: #cc4444;
+  padding: 0 12px;
+  font-style: italic;
+}
+
+.yfticker-loading {
+  padding: 0 12px;
+  font-style: italic;
+  opacity: 0.6;
+}
