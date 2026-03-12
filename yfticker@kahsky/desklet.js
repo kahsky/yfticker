@@ -704,15 +704,20 @@ YFTickerDesklet.prototype = {
     // -------------------------------------------------------------------------
     _startScroll() {
         this._stopScroll();
-        const speed = Math.max(1, this.scrollSpeed);
+        const pixelsPerMs = Math.max(1, this.scrollSpeed) / SCROLL_INTERVAL_MS;
         const _t = this;
+        let lastUs = GLib.get_monotonic_time();
         this.scrollId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, SCROLL_INTERVAL_MS, () => {
             if (!_t.tickerBox) return GLib.SOURCE_REMOVE;
-            _t.tickerX -= speed;
+            const nowUs = GLib.get_monotonic_time();
+            const elapsedMs = (nowUs - lastUs) / 1000;
+            lastUs = nowUs;
+            // Cap elapsed time to avoid a large jump after a suspend/freeze
+            _t.tickerX -= pixelsPerMs * Math.min(elapsedMs, SCROLL_INTERVAL_MS * 4);
             if (_t.halfWidth > 0 && _t.tickerX <= -_t.halfWidth) {
-                _t.tickerX = 0;
+                _t.tickerX += _t.halfWidth;
             }
-            _t.tickerBox.set_x(_t.tickerX);
+            _t.tickerBox.set_x(Math.round(_t.tickerX));
             return GLib.SOURCE_CONTINUE;
         });
     },
